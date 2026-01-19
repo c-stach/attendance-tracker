@@ -1,0 +1,234 @@
+/* Canvas-inspired aesthetic */
+
+:root {
+  --canvas-blue: #2d3b45;
+  --canvas-light: #f5f7f8;
+  --canvas-border: #d1d5db;
+  --canvas-accent: #2563eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;
+  background: var(--canvas-light);
+  color: #1f2937;
+}
+
+/* NAV BAR */
+
+.top-nav {
+  background: var(--canvas-blue);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding-bottom: 0.25rem;
+}
+
+.nav-links button.active {
+  border-bottom: 2px solid white;
+}
+
+/* MAIN CONTENT */
+
+main {
+  padding: 2rem;
+}
+
+section {
+  display: none;
+}
+
+section.active {
+  display: block;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* FORMS */
+
+.form-group {
+  margin-bottom: 1rem;
+  max-width: 400px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--canvas-border);
+  border-radius: 4px;
+}
+
+button.primary {
+  background: var(--canvas-accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* LISTS */
+
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.list li {
+  padding: 0.5rem 0;
+}
+
+/* CALENDAR */
+
+.calendar {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.calendar-day {
+  background: white;
+  border: 1px solid var(--canvas-border);
+  padding: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.calendar-day:hover {
+  background: #e5e7eb;
+}
+
+.calendar-details {
+  background: white;
+  border: 1px solid var(--canvas-border);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.calendar-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#calendar {
+  background: white;
+  border: 1px solid var(--canvas-border);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.attendance-row {
+  display: inline-flex;        /* key fix */
+  align-items: center;
+  gap: 0.5rem;                 /* 1–2 spaces visually */
+  cursor: pointer;
+}
+
+.attendance-row span {
+  white-space: nowrap;
+}
+
+.attendance-list {
+  padding-left: 0;
+  max-width: 400px;   /* keeps list from spanning screen */
+}
+
+.attendance-list li {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.students-by-class li strong {
+  display: block;
+  margin-top: 1rem;
+  color: var(--canvas-blue);
+}
+
+/* Highlight the clicked date */
+.fc-day-selected {
+  background-color: #2563eb55 !important; /* light semi-transparent blue */
+  border-radius: 6px;
+}
+
+/* Attendance list below the calendar */
+#selectedDateText ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+#selectedDateText li {
+  display: grid;
+  grid-template-columns: 1fr 40px; /* name column + P/A column */
+  align-items: center;
+  padding: 2px 0;
+  font-size: 0.95rem;
+}
+
+#selectedDateText li span:last-child {
+  justify-self: center; /* centers the P/A in its column */
+}
+
+#selectedDateText h4 {
+  margin-bottom: 0.25rem;
+  margin-top: 0.75rem;
+  color: var(--canvas-blue);
+  font-weight: 600;
+}
+
+/* Small attendance dot under the calendar date */
+.attendance-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none; /* allows clicking through the dot */
+}
+
+/* Positioning: bottom of the day cell (adjust if needed) */
+.fc-daygrid-day {
+  position: relative; /* needed for absolute positioning of dot */
+}
+
+.fc-daygrid-day-number + .attendance-dot {
+  top: calc(100% - 8px); /* 2px above bottom of the cell */
+}
