@@ -1,5 +1,8 @@
 # attendance-tracker
 
+## author
+Carolyn Stach
+
 ## App Overview
 
 The Attendance Tracker is a client-side web application designed to help instructors manage class rosters and record daily attendance. The app allows users to:
